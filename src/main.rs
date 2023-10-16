@@ -1,7 +1,8 @@
 use serde::{Serialize, Deserialize};
 use dotenv::dotenv;
 
-mod models;
+mod helpers;
+pub mod models;
 
 #[derive(Serialize, Deserialize, Debug)]
 struct SpotifyKeys {
@@ -16,6 +17,8 @@ fn main() {
     let spotify_keys = get_access_tocken();
     let serialized = serde_json::to_string(&spotify_keys).unwrap();
     println!("serialized = {}", serialized);
+
+    helpers::get_access_token();  
 }
 
 fn get_access_tocken() ->  SpotifyKeys {

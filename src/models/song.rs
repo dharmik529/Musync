@@ -1,11 +1,12 @@
 use crate::models::artist::Artist;
 use serde::Serialize;
+use diesel::Queryable;
 
 #[derive(Queryable)]
 pub struct Song{
     pub id: i32,
     pub title: String,
-    pub artist: String,
+    pub artist: i32,
     pub duration: String,
     pub appleurl: Option<String>,
     pub spotifyurl: Option<String>,
@@ -31,7 +32,7 @@ impl Song {
 pub struct SongJson {
    pub id: i32,
     pub title: String,
-    pub artist: String,
+    pub artist: Artist,
     pub duration: String,
     pub appleurl: Option<String>,
     pub spotifyurl: Option<String>,

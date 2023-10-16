@@ -1,4 +1,5 @@
-use serde::Serialize;
+use serde::{ Serialize };
+use diesel::Queryable;
 
 #[derive(Queryable, Serialize)]
 pub struct Artist {
