@@ -1,6 +1,8 @@
 use serde::{Serialize, Deserialize};
 use dotenv::dotenv;
 
+mod models;
+
 #[derive(Serialize, Deserialize, Debug)]
 struct SpotifyKeys {
     spotify_client_id : String,
