@@ -1,9 +1,7 @@
 extern crate reqwest;
 use reqwest::header;
 
-pub fn get_access_token() -> Result<(), Box<dyn std::error::Error>> {
-let clientid: &str = "0cca86ed406f4f548686852611b6789c";
-    let clientsecret: &str = "6d4daf9484a54d7ab6f442ce704c7d0e";
+pub fn get_access_token(clientid: String, clientsecret: String) -> Result<(), Box<dyn std::error::Error>> {
     let body: String = format!("grant_type=client_credentials&client_id={clientid}&client_secret={clientsecret}");
     
     let mut headers = header::HeaderMap::new();

@@ -15,10 +15,8 @@ struct SpotifyKeys {
 fn main() {
     dotenv().ok();
     let spotify_keys = get_access_tocken();
-    let serialized = serde_json::to_string(&spotify_keys).unwrap();
-    println!("serialized = {}", serialized);
 
-    helpers::get_access_token();  
+    helpers::get_access_token(spotify_keys.spotify_client_id, spotify_keys.spotify_client_secret);  
 }
 
 fn get_access_tocken() ->  SpotifyKeys {
