@@ -1,7 +1,8 @@
 extern crate reqwest;
 use reqwest::header;
 
-pub fn get_access_token(clientid: String, clientsecret: String) -> Result<(), Box<dyn std::error::Error>> {
+#[tokio]
+pub async fn get_access_token(clientid: String, clientsecret: String) -> String {
     let body: String = format!("grant_type=client_credentials&client_id={clientid}&client_secret={clientsecret}");
     
     let mut headers = header::HeaderMap::new();
@@ -12,11 +13,11 @@ pub fn get_access_token(clientid: String, clientsecret: String) -> Result<(), Bo
         .build()
         .unwrap();
     let res = client.post("https://accounts.spotify.com/api/token")
+        .await
         .headers(headers)
         .body(body)
-        .send()?
-        .text()?;
-    println!("{}", res);
+        .unwrap()
+    return res.access_token;
 
     Ok(())
 }

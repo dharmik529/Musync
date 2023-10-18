@@ -1,7 +1,7 @@
 use serde::{Serialize, Deserialize};
 use dotenv::dotenv;
 
-mod helpers;
+mod spotify_helper;
 pub mod models;
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -14,12 +14,12 @@ struct SpotifyKeys {
 
 fn main() {
     dotenv().ok();
-    let spotify_keys = get_access_tocken();
+    let spotify_keys = toSK();
 
-    helpers::get_access_token(spotify_keys.spotify_client_id, spotify_keys.spotify_client_secret);  
+    spotify_keys.spotify_access_token = spotify_helper::get_access_token(spotify_keys.spotify_client_id, spotify_keys.spotify_client_secret);  
 }
 
-fn get_access_tocken() ->  SpotifyKeys {
+fn toSK() ->  SpotifyKeys {
     
     let spotify_keys = SpotifyKeys {
         spotify_client_id : std::env::var("SPOTIFY_CLIENT_ID").expect("SPOTIFY_CLIENT_ID must be set."),
